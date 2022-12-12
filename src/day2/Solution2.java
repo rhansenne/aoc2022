@@ -1,7 +1,8 @@
+package day2;
 import java.io.*;
 import java.util.Scanner;
 
-public class Day2B {
+public class Solution2 {
 
 	public static void main(String[] args) throws Exception {
 		Scanner scanner = new Scanner(new File("src\\day2\\input.txt"));
@@ -68,6 +69,7 @@ public class Day2B {
 			}
 		}
 		System.out.print(total);
+		scanner.close();
 	}
 	
 }

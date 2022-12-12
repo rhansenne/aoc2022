@@ -1,7 +1,8 @@
+package day6;
 import java.io.*;
 import java.util.Scanner;
 
-public class Day6B {
+public class Solution2 {
 
 	public static void main(String[] args) throws Exception {
 		Scanner scanner = new Scanner(new File("src\\day6\\input.txt"));
@@ -21,6 +22,7 @@ public class Day6B {
 			}
 			seq = seq.substring(1,4) + line.charAt(i);
 		}
+		scanner.close();
 	}
 	
 }

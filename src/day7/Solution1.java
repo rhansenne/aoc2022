@@ -1,9 +1,10 @@
+package day7;
 import java.io.*;
 import java.util.*;
 
-public class Day7B {
+public class Solution1 {
 
-	static Day7B d7 = new Day7B();
+	static Solution1 d7 = new Solution1();
 	static Map<String,Directory> dirs = new HashMap<String,Directory>();
 
 	class File {
@@ -35,14 +36,13 @@ public class Day7B {
 		while ((line = br.readLine()) != null) {
 			if (line.startsWith("$ cd ")) {
 				String p = line.substring(5,line.length());
-				if (p.equals("..")) {
+				if (p.equals("..")) 
 					currentPath = currentPath.substring(0,currentPath.lastIndexOf("/"));
-				} else 
+				else 
 					currentPath += "/" + p;
 				currentDir = getDir(currentPath);
 			}
-			else if (line.equals("$ ls")) {
-			}
+			else if (line.equals("$ ls")) {}
 			else if (line.startsWith("dir ")) {
 				String dirName = line.substring(4,line.length());
 				currentDir.addFile(getDir(currentPath+"/"+dirName));
@@ -52,17 +52,12 @@ public class Day7B {
 				long size = Long.parseLong(f[0]);
 				currentDir.addFile(d7.new File(f[1],size));
 			}
-		}
-		
-		Directory selected = d7.new Directory("");
-		selected.addFile(d7.new File("",Long.MAX_VALUE));
-		for (Directory d: dirs.values()) {
-			if (d.getSize()>=8381165 && d.getSize()<selected.getSize()) {
-				selected = d;
-			}
-		}
-		System.out.println(selected);
-		
+		}		
+		long totalSize = 0;
+		for (Directory d: dirs.values())
+			if (d.getSize()<=100000) totalSize += d.getSize();
+		System.out.println(totalSize);
+		br.close();
 	}
 
 	static Directory getDir(String path) {

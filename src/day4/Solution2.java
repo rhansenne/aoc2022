@@ -1,7 +1,8 @@
+package day4;
 import java.io.*;
 import java.util.*;
 
-public class Day4B {
+public class Solution2 {
 
 	public static void main(String[] args) throws Exception {
 		Scanner scanner = new Scanner(new File("src\\day4\\input.txt"));
@@ -18,6 +19,7 @@ public class Day4B {
 			if (i1 <= i4 && i3 <= i2) count++;
 		}
 		System.out.print(count);
+		scanner.close();
 	}
 	
 }

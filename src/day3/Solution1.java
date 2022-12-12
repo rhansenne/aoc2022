@@ -1,7 +1,8 @@
+package day3;
 import java.io.*;
 import java.util.Scanner;
 
-public class Day3 {
+public class Solution1 {
 
 	public static void main(String[] args) throws Exception {
 		Scanner scanner = new Scanner(new File("src\\day3\\input.txt"));
@@ -20,6 +21,7 @@ public class Day3 {
 			}
 		}
 		System.out.print(count);
+		scanner.close();
 	}
 	
 }

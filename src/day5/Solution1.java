@@ -1,8 +1,9 @@
+package day5;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Day5B {
+public class Solution1 {
 
 	public static void main(String[] args) throws Exception {
 		Scanner scanner = new Scanner(new File("src\\day5\\input.txt"));
@@ -93,8 +94,11 @@ public class Day5B {
 			int to = Integer.parseInt(split[5]);
 			LinkedList fromList = lists[from-1];
 			LinkedList toList = lists[to-1];
-			for (int i=0;i<amount;i++) toList.add(fromList.removeLast());
+			LinkedList tempList = new LinkedList<Character>();
+			for (int i=0;i<amount;i++) tempList.add(fromList.removeLast());
+			for (int i=0;i<amount;i++) toList.add(tempList.removeLast());
 		}
+		scanner.close();
 		for (int i=0;i<9;i++) System.out.print(lists[i].removeLast());
 	
 	}

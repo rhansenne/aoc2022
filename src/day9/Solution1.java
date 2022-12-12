@@ -1,7 +1,8 @@
+package day9;
 import java.io.*;
 import java.util.*;
 
-public class Day9 {
+public class Solution1 {
 
 	static Set visited = new HashSet();
 	static int xH = 0;

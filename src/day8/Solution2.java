@@ -1,8 +1,9 @@
+package day8;
 
 
 import java.io.*;
 
-public class Day8B {
+public class Solution2 {
 	
 	public static void main(String[] args) throws Exception {
 		File file = new File("src/day8/input.txt");

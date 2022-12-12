@@ -1,7 +1,8 @@
+package day11;
 import java.io.*;
 import java.util.*;
 
-public class Day11 {
+public class Solution1 {
 
 	static Map<String,Monkey> monkeys = new TreeMap<String,Monkey>();
 	

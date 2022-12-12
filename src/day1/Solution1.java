@@ -1,7 +1,8 @@
+package day1;
 import java.io.*;
 import java.util.*;
 
-public class Day1 {
+public class Solution1 {
 
 	public static void main(String[] args) throws Exception {
 		Scanner scanner = new Scanner(new File("src\\day1\\input.txt"));
@@ -16,6 +17,7 @@ public class Day1 {
 				
 		}
 		System.out.print(max);
+		scanner.close();
 	}
 	
 }
