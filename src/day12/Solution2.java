@@ -2,15 +2,13 @@ package day12;
 import java.io.*;
 import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.GraphPath;
-import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
+import org.jgrapht.*;
+import org.jgrapht.alg.shortestpath.*;
 import org.jgrapht.graph.*;
 
 public class Solution2 {
 	
 	public static void main(String[] args) throws Exception {
-
 		// read file as matrix
 		Scanner scanner = new Scanner(new File("src\\day12\\input.txt"));		
 		List<char[]> matrix = new ArrayList<char[]>();
@@ -34,8 +32,7 @@ public class Solution2 {
 				}
 				graph.addVertex(i+"."+j);
 				if (i>0) checkAddEdge(graph, matrix.get(i-1)[j], row[j], (i-1)+"."+j, i+"."+j);
-				if (j>0) checkAddEdge(graph, row[j-1], row[j], i+"."+(j-1), i+"."+j);
-					
+				if (j>0) checkAddEdge(graph, row[j-1], row[j], i+"."+(j-1), i+"."+j);					
 			}
 		}
 		
@@ -44,21 +41,15 @@ public class Solution2 {
 		int length = Integer.MAX_VALUE;
 		for (String start: startPositions) {
 			GraphPath<String, DefaultEdge> path = dijkstra.getPath(start, end);
-			if (path != null) {
-				int dist = dijkstra.getPath(start, end).getLength();
-				if (dist<length) length = dist;
-			}
+			if (path != null && path.getLength()<length)
+				length = path.getLength();
 		}
 		System.out.println(length);
-	
 	}
 	
 	private static void checkAddEdge(Graph<String, DefaultEdge> graph, char a, char b, String coA, String coB) {
-		if (b<=a+1)
-			graph.addEdge(coA, coB);
-		if (a<=b+1)
-			graph.addEdge(coB, coA);
+		if (b<=a+1) graph.addEdge(coA, coB);
+		if (a<=b+1)	graph.addEdge(coB, coA);
 	}
-	
 	
 }
