@@ -16,8 +16,8 @@ public class Solution2 {
 		scanner.close();
 		List div1 = Arrays.asList(Arrays.asList(Long.valueOf(2)));
 		List div2 = Arrays.asList(Arrays.asList(Long.valueOf(6)));
-		list.add(Arrays.asList(Arrays.asList(Long.valueOf(2))));
-		list.add(Arrays.asList(Arrays.asList(Long.valueOf(6))));
+		list.add(div1);
+		list.add(div2);
 		Collections.sort(list, new ListComparator());
 		int key=1;
 		for (int i=1;i<=list.size();i++) {
