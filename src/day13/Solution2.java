@@ -14,8 +14,8 @@ public class Solution2 {
 			if (!line.isEmpty()) list.add(jsonParser.parse(line));
 		}
 		scanner.close();
-		List div1 = Arrays.asList(Arrays.asList(Long.valueOf(2)));
-		List div2 = Arrays.asList(Arrays.asList(Long.valueOf(6)));
+		List div1 = (List) jsonParser.parse("[[2]]");
+		List div2 = (List) jsonParser.parse("[[6]]");
 		list.add(div1);
 		list.add(div2);
 		Collections.sort(list, new ListComparator());
