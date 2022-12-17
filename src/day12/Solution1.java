@@ -18,7 +18,7 @@ public class Solution1 {
 
 		// convert to directed graph
 		String start="", end="";
-		DefaultDirectedGraph<String, DefaultEdge> graph = new DefaultDirectedGraph(DefaultEdge.class);
+		DefaultDirectedGraph<String, DefaultEdge> graph = new DefaultDirectedGraph(DefaultWeightedEdge.class);
 		for (int i=0;i<matrix.size();i++) {
 			char[] row = matrix.get(i);
 			for (int j=0;j<row.length;j++) {
