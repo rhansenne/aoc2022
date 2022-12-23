@@ -50,8 +50,7 @@ public class Solution2 {
 								jPos = newjPos;
 								rotateMapCW();
 								rotateMapCW();
-							}
-							else continue outer;
+							} else continue outer;
 						} else if (iPos<2*tileSize && map[iPos+tileSize][jPos] == 0 && map[iPos + tileSize + 2*(tileSize-iPos%tileSize)-1][jPos - tileSize]!=0) {
 							int newiPos = iPos + tileSize + 2*(tileSize-iPos%tileSize)-1;
 							int newjPos = jPos - tileSize;
@@ -60,16 +59,14 @@ public class Solution2 {
 								jPos = newjPos;
 								rotateMapCW();
 								rotateMapCW();
-							}
-							else continue outer;								
+							} else continue outer;								
 						} else if (jPos==4*tileSize-1 && iPos>=2*tileSize) {
 							int newiPos = iPos-2*tileSize;
 							int newjPos = 0;
 							if (map[newiPos][newjPos]==1) {
 								iPos = newiPos;
 								jPos = newjPos;
-							}
-							else continue outer;											
+							} else continue outer;											
 						} else if (iPos<tileSize) {
 							int newiPos = map.length-1;
 							int newjPos = tileSize + iPos;
@@ -77,8 +74,7 @@ public class Solution2 {
 								iPos = newiPos;
 								jPos = newjPos;
 								rotateMapCW();
-							}
-							else continue outer;								
+							} else continue outer;								
 						} else {
 							int newiPos = 0;
 							int newjPos = tileSize - (iPos%tileSize) -1;
@@ -86,8 +82,7 @@ public class Solution2 {
 								iPos = newiPos;
 								jPos = newjPos;
 								for (int r=0;r<3;r++) rotateMapCW();
-							}
-							else continue outer;															
+							} else continue outer;															
 						}
 					}
 					else if (map[iPos][jPos+1]==0) {
@@ -98,8 +93,7 @@ public class Solution2 {
 								iPos = newiPos;
 								jPos = newjPos;
 								for (int r=0;r<3;r++) rotateMapCW();
-							}
-							else continue outer;
+							} else continue outer;
 						} else if ((iPos-tileSize)>=0 && map[iPos-tileSize][jPos+1]!=0) {								
 							int newiPos = iPos - (iPos%tileSize + 1);
 							int newjPos = jPos + (iPos%tileSize + 1);
@@ -107,8 +101,7 @@ public class Solution2 {
 								iPos = newiPos;
 								jPos = newjPos;
 								rotateMapCW();			
-							} 
-							else continue outer;
+							} else continue outer;
 						} else {
 							if ((iPos+2*tileSize)<map.length && map[iPos+2*tileSize][jPos+1]!=0) {
 								int newiPos = iPos + tileSize + 2*(tileSize-iPos%tileSize)-1; 								
@@ -118,8 +111,7 @@ public class Solution2 {
 									jPos = newjPos;
 									rotateMapCW();
 									rotateMapCW();
-								}
-								else continue outer;
+								} else continue outer;
 							} else {								
 								int newiPos = iPos - tileSize - 2*(iPos%tileSize)-1; 
 								int newjPos = jPos + tileSize;
@@ -128,8 +120,7 @@ public class Solution2 {
 									jPos = newjPos;
 									rotateMapCW();
 									rotateMapCW();
-								} 
-								else continue outer;
+								} else continue outer;
 							}
 						}					
 					}
