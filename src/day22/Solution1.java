@@ -48,8 +48,7 @@ public class Solution1 {
 							jPos = prevJPos;
 							continue outer;
 						}
-					}
-					else if (map[iPos][jPos+1]==2) continue outer;
+					} else if (map[iPos][jPos+1]==2) continue outer;
 					else jPos++;
 				}
 			}
