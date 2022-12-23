@@ -4,23 +4,20 @@ import java.util.*;
 
 public class Solution1 {
 
-	static enum Facing { right(0), down(1), left(2), up(3); int val; Facing(int v) {val=v;}}; 
-	
+	static int iPos=0, jPos=0;
+	static int[][] map;
+	static int mapRotation=0;
 	public static void main(String[] args) throws Exception {
 		Scanner scanner = new Scanner(new File("src\\day22\\input.txt"));
 		List<int[]> mapList = new ArrayList<int[]>();
-		String instructions="";
 		int length=0;
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
-			if (line.isEmpty()) {
-				instructions = scanner.nextLine();
-				break;
-			}
+			if (line.isEmpty()) break;
 			if (line.length()>length) {
 				length = line.length();
-				for (int[] i : mapList)
-					i = Arrays.copyOf(i, length); 
+				for (int i=0;i<mapList.size();i++)
+					mapList.set(i, Arrays.copyOf(mapList.get(i), length)); 
 			}			
 			int[] row = new int[length];
 			for (int i=0; i<line.length();i++) {
@@ -32,77 +29,47 @@ public class Solution1 {
 			}
 			mapList.add(row);			
 		}
+		String[] instr = scanner.nextLine().split("(?<=\\d)(?=\\D)|(?<=\\D)(?=\\d)");
 		scanner.close();
-
-		String[] instr = instructions.split("(?<=\\d)(?=\\D)|(?<=\\D)(?=\\d)");
-		int[][] map = mapList.toArray(new int[0][0]);
-		int facing = Facing.right.val;
-		int iPos=0, jPos=0;
-		while (map[iPos][jPos]!=0) jPos++;
+		map = mapList.toArray(new int[0][0]);
+		while (map[iPos][jPos]==0) jPos++;
 		outer: for (int ins=0; ins<instr.length; ins++) {
-			if (instr[ins].equals("R")) facing = (facing+1)%4;
-			else if (instr[ins].equals("L")) facing = (facing+3)%4;
+			if (instr[ins].equals("L")) rotateMapCW();
+			else if (instr[ins].equals("R"))
+				for (int i=0;i<3;i++) rotateMapCW();
 			else {
 				int steps = Integer.parseInt(instr[ins]);
-				if (facing==Facing.right.val)
-					for (int i=0;i<steps; i++) {
-						int prevJPos = jPos;
-						if ((jPos+1)==map[iPos].length || map[iPos][jPos+1]==0) {
-							jPos=0;
-							while (map[iPos][jPos]==0) jPos++;
-							if (map[iPos][jPos]==2) {
-								jPos = prevJPos;
-								continue outer;
-							}
+				for (int i=0;i<steps; i++) {
+					int prevJPos = jPos;
+					if ((jPos+1)==map[iPos].length || map[iPos][jPos+1]==0) {
+						jPos=0;
+						while (map[iPos][jPos]==0) jPos++;
+						if (map[iPos][jPos]==2) {
+							jPos = prevJPos;
+							continue outer;
 						}
-						else if (map[iPos][jPos+1]==2) continue outer;
-						else jPos++;
 					}
-				if (facing==Facing.left.val)
-					for (int i=0;i<steps; i++) {
-						int prevJPos = jPos;
-						if ((jPos-1)<0 || map[iPos][jPos-1]==0) {
-							jPos=map[iPos].length-1;
-							while (map[iPos][jPos]==0) jPos--;						
-							if (map[iPos][jPos]==2) {
-								jPos = prevJPos;
-								continue outer;
-							}
-						}
-						else if (map[iPos][jPos-1]==2) continue outer;
-						else jPos--;
-					}
-				if (facing==Facing.up.val)
-					for (int i=0;i<steps; i++) {
-						int prevIPos = iPos;
-						if ((iPos-1)<0 || map[iPos-1][jPos]==0) {
-							iPos=map.length-1;
-							while (map[iPos][jPos]==0) iPos--;
-							if (map[iPos][jPos]==2) {
-								iPos = prevIPos;
-								continue outer;
-							}							
-						} 
-						else if (map[iPos-1][jPos]==2) continue outer;
-						else iPos--;
-					}
-				if (facing==Facing.down.val)
-					for (int i=0;i<steps; i++) {
-						int prevIPos = iPos;
-						if ((iPos+1)==map.length || map[iPos+1][jPos]==0) {
-							iPos=0;
-							while (map[iPos][jPos]==0) iPos++;	
-							if (map[iPos][jPos]==2) {
-								iPos = prevIPos;
-								continue outer;
-							}								
-						} 
-						else if (map[iPos+1][jPos]==2) continue outer;
-						else iPos++;
-					}
+					else if (map[iPos][jPos+1]==2) continue outer;
+					else jPos++;
+				}
 			}
 		}
+		int facing = (4-(mapRotation%4))%4;
+		for (int i=0;i<facing;i++) rotateMapCW();
 		System.out.println(1000*(iPos+1)+4*(jPos+1)+facing);
 	}
 	
+	static void rotateMapCW() {
+	    final int M = map.length;
+	    final int N = map[0].length;
+	    int[][] rotated = new int[N][M];
+	    for (int r = 0; r < M; r++)
+	        for (int c = 0; c < N; c++)
+	        	rotated[c][M-1-r] = map[r][c];
+	    map = rotated;
+		mapRotation++;
+		int tmp=iPos;
+		iPos=jPos;
+		jPos=map[0].length-tmp-1;
+	}	
 }
